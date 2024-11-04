@@ -1,0 +1,66 @@
+= Recommendations Dataset Embeddings
+:url: https://data.neo4j.com/rec-embed/
+
+These are embeddings for the link:https://github.com/neo4j-graph-examples/recommendations[Neo4j recommendations dataset^]. 
+
+The embeddings and vector indexes allow you to find semantically similar bios, plots, and posters.
+
+== Get Started
+
+=== Create recommendations database
+
+To load the embeddings you will need to create a Neo4j database with the recommendations dataset.
+
+You can create a new Sandbox instance by logging into the link:https://sandbox.neo4j.com/[sandbox.neo4j.com^] and selecting "Recommendations".
+
+You can restore the dataset in your own database using the
+link:https://github.com/neo4j-graph-examples/recommendations/blob/main/data/recommendations-50.dump[recommendations-50.dump] file.
+
+=== Load the embeddings
+
+To load *all* the embeddings, download and run the link:{url}load_all.cypher[`load_all.cypher`^] query.
+
+See below for the individual embeddings and partial datasets.
+
+== Embeddings
+
+The embeddings were created for the properties using the following models:
+
+- `Person.bio` - OpenAI text-embedding-ada-002 
+- `Movie.plot` - OpenAI text-embedding-ada-002 
+- `Movie.poster` - OpenAI CLIP
+
+There are full embedding and a sample of the embeddings for the first 1000 (1k) nodes in the dataset.
+
+There are also Cypher queries to load the embeddings and create the indexes.
+
+The Python code to generate the embeddings is in the `src` directory.
+
+All files are at link:{url}[data.neo4j.com/rec-embed^].
+
+=== Person.bio
+
+* Embeddings (full) - link:{url}person-bio-embeddings.csv[`person-bio-embeddings.csv`^]
+* Embeddings (sample) - link:{url}person-bio-embeddings-1k.csv[`person-bio-embeddings-1k.csv`^]
+* Load Cypher - link:{url}bio_load.cypher[`bio_load.cypher`^]
+* Create Index Cypher - link:{url}bio_create_index.cypher[`bio_create_index.cypher`^]
+* Example Query - link:{url}bio_query.cypher[`bio_query.cypher`^]
+* Python code - link:{url}src/bio_openai_embeddings.py[`src/bio_openai_embeddings.py`^]
+
+=== Movie.plot
+
+* Embeddings (full) - link:{url}movie-plot-embeddings.csv[`movie-plot-embeddings.csv`^]
+* Embeddings (sample) - link:{url}movie-plot-embeddings-1k.csv[`movie-plot-embeddings-1k.csv`^]
+* Load Cypher - link:{url}plot_load.cypher[`plot_load.cypher`^]
+* Create Index Cypher - link:{url}plot_create_index.cypher[`plot_create_index.cypher`^]
+* Example Query - link:{url}plot_query.cypher[`plot_query.cypher`^]
+* Python code - link:{url}src/plot_openai_embeddings.py[`src/plot_openai_embeddings.py`^]
+
+=== Movie.poster
+
+* Embeddings (full) - link:{url}movie-poster-embeddings.csv[`movie-poster-embeddings.csv`^]
+* Embeddings (sample) - link:{url}movie-poster-embeddings-1k.csv[`movie-poster-embeddings-1k.csv`^]
+* Load Cypher - link:{url}posters_load.cypher[`posters_load.cypher`^]
+* Create Index Cypher - link:{url}posters_create_index.cypher[`posters_create_index.cypher`^]
+* Example Query - link:{url}poster_query.cypher[`poster_query.cypher`^]
+* Python code - link:{url}src/poster_embeddings.py[`src/poster_embeddings.py`^]
